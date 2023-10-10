@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Url } from '../entities/url.entity';
 
@@ -9,6 +9,10 @@ export class GetUrl {
     private urlRepository: Repository<Url>,
   ) {}
   async execute(code: string): Promise<Url> {
-    return this.urlRepository.findOne({ where: { code } });
+    const url = await this.urlRepository.findOne({ where: { code } });
+    if (!url) {
+      throw new NotFoundException('Url Não encontrada!');
+    }
+    return url;
   }
 }
