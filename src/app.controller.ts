@@ -1,8 +1,18 @@
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { ListUrl } from './use-cases/list-url';
 import { GetUrl } from './use-cases/get-url';
 import { RegisterShortUrl } from './use-cases/register-short-url';
 import { ShortUrlValidator } from './validators/short-url.validator';
+import { DeleteUrl } from './use-cases/delete-url';
 
 @Controller()
 export class AppController {
@@ -10,6 +20,7 @@ export class AppController {
     private readonly listUrl: ListUrl,
     private readonly getUrl: GetUrl,
     private readonly registerShortUrl: RegisterShortUrl,
+    private readonly deleteUrl: DeleteUrl,
   ) {}
 
   @Get()
@@ -26,5 +37,11 @@ export class AppController {
   @Post()
   registerUrl(@Body() body: ShortUrlValidator) {
     return this.registerShortUrl.execute(body.longUrl, body.title);
+  }
+
+  @Delete(':code')
+  async removeUrl(@Param('code') code: string, @Res() res) {
+    await this.deleteUrl.execute(code);
+    return res.status(HttpStatus.NO_CONTENT).send();
   }
 }
