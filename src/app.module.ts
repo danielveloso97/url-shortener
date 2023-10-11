@@ -6,9 +6,10 @@ import { AppController } from './app.controller';
 import { GetUrl } from './use-cases/get-url';
 import { RegisterShortUrl } from './use-cases/register-short-url';
 import { DeleteUrl } from './use-cases/delete-url';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DataBaseModule],
+  imports: [ConfigModule.forRoot(), DataBaseModule],
   providers: [...UrlProviders, ListUrl, GetUrl, RegisterShortUrl, DeleteUrl],
   controllers: [AppController],
 })

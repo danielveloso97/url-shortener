@@ -7,12 +7,14 @@ import {
 } from '@nestjs/common';
 import { nanoid } from 'nanoid';
 import { isURL } from 'class-validator';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class RegisterShortUrl {
   constructor(
     @Inject('URL_REPOSITORY')
     private urlRepository: Repository<Url>,
+    private configService: ConfigService,
   ) {}
   async execute(longUrl: string, title: string): Promise<Url> {
     const urlIsValid = isURL(longUrl);
@@ -20,7 +22,7 @@ export class RegisterShortUrl {
       throw new UnprocessableEntityException('A Url Não é Válida');
     }
     const code = nanoid(8);
-    const shortUrl = `http://localhost:3000/${code}`;
+    const shortUrl = `${this.configService.getOrThrow('BASE_URL')}/${code}`;
     const url = {
       title: title,
       longUrl: longUrl,
