@@ -15,6 +15,7 @@ async function bootstrap() {
       validateCustomDecorators: true,
     }),
   );
+  app.setGlobalPrefix('/api');
   const config = new DocumentBuilder()
     .setTitle('Url Shortener')
     .setDescription('Url Shortener API.')

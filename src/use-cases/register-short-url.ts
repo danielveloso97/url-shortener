@@ -15,7 +15,6 @@ export class RegisterShortUrl {
     private urlRepository: Repository<Url>,
   ) {}
   async execute(longUrl: string, title: string): Promise<Url> {
-    //1 Receber a URL, 2 Encurtar, 3 Devolver a URl encurtada
     const urlIsValid = isURL(longUrl);
     if (!urlIsValid) {
       throw new UnprocessableEntityException('A Url Não é Válida');
