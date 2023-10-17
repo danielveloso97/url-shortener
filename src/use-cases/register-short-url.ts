@@ -29,8 +29,8 @@ export class RegisterShortUrl {
       shortUrl: shortUrl,
       code: code,
     };
-    const savedIdUrl = this.urlRepository.create(url);
-    await this.urlRepository.save(savedIdUrl);
+    const savedIdUrl = this.urlRepository.create(url); //metódo create
+    await this.urlRepository.save(savedIdUrl); //método save
     return savedIdUrl;
   }
 }
