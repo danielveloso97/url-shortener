@@ -1,5 +1,4 @@
-import { Repository } from 'typeorm';
-import { Url } from 'src/entities/url.entity';
+import { Url } from '../entities/url.entity';
 import {
   Injectable,
   Inject,
@@ -8,12 +7,14 @@ import {
 import { nanoid } from 'nanoid';
 import { isURL } from 'class-validator';
 import { ConfigService } from '@nestjs/config';
+import { UrlProvider } from '../database/url.providers';
+import { UrlRepository } from '../repositories/url.repository';
 
 @Injectable()
 export class RegisterShortUrl {
   constructor(
-    @Inject('URL_REPOSITORY')
-    private urlRepository: Repository<Url>,
+    @Inject(UrlProvider.name)
+    private urlRepository: UrlRepository,
     private configService: ConfigService,
   ) {}
   async execute(longUrl: string, title: string): Promise<Url> {
@@ -30,7 +31,6 @@ export class RegisterShortUrl {
       code: code,
     };
     const savedIdUrl = this.urlRepository.create(url); //metódo create
-    await this.urlRepository.save(savedIdUrl); //método save
     return savedIdUrl;
   }
 }

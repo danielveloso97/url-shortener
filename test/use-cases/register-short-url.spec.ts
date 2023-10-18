@@ -3,6 +3,7 @@ import { RegisterShortUrl } from '../../src/use-cases/register-short-url';
 import { UrlRepository } from '../repositories/url-repository';
 import { Test } from '@nestjs/testing';
 import { UnprocessableEntityException } from '@nestjs/common';
+import { UrlProvider } from '../../src/database/url.providers';
 
 describe('RegisterShortUrl', () => {
   let registerShortUrl: RegisterShortUrl;
@@ -15,7 +16,7 @@ describe('RegisterShortUrl', () => {
       providers: [
         ConfigService,
         RegisterShortUrl,
-        { provide: 'URL_REPOSITORY', useValue: urlRepository },
+        { provide: UrlProvider.name, useValue: urlRepository },
       ],
     }).compile();
 

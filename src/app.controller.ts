@@ -30,7 +30,7 @@ export class AppController {
   @ApiOkResponse({ isArray: true, type: UrlModel })
   @Get()
   getAll() {
-    return this.listUrl.findAll();
+    return this.listUrl.execute();
   }
 
   @ApiOperation({ summary: 'Endpoint for redirect URL' })
