@@ -1,7 +1,7 @@
 import { DataSource, Repository } from 'typeorm';
 import { Url } from '../entities/url.entity';
-import { UrlRepository } from 'src/repositories/url.repository';
-import { CreateShortUrlDto } from 'src/dtos/create-short-url-dto';
+import { UrlRepository } from '../repositories/url.repository';
+import { CreateShortUrlDto } from '../dtos/create-short-url-dto';
 import { Inject, Injectable } from '@nestjs/common';
 
 export const UrlProviders = [

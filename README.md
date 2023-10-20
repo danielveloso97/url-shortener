@@ -39,7 +39,7 @@ $ yarn run start:prod
 
 ```bash
 # unit tests
-$ yarn run test
+$ yarn test
 
 # e2e tests
 $ yarn run test:e2e
@@ -48,6 +48,6 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
-## License
+## Insomnia Collection
 
-Nest is [MIT licensed](LICENSE).
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=shortenerurl&uri=https://github.com/danielveloso97/url-shortener/.github/insomnia_Collections.json)
