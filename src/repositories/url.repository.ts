@@ -1,5 +1,5 @@
-import { CreateShortUrlDto } from 'src/dtos/create-short-url-dto';
-import { Url } from 'src/entities/url.entity';
+import { CreateShortUrlDto } from '../dtos/create-short-url-dto';
+import { Url } from '../entities/url.entity';
 
 export interface UrlRepository {
   create(data: CreateShortUrlDto): Promise<Url>;
