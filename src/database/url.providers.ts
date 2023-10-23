@@ -4,14 +4,6 @@ import { UrlRepository } from '../repositories/url.repository';
 import { CreateShortUrlDto } from '../dtos/create-short-url-dto';
 import { Inject, Injectable } from '@nestjs/common';
 
-export const UrlProviders = [
-  {
-    provide: 'URL_REPOSITORY',
-    useFactory: (dataSource: DataSource) => dataSource.getRepository(Url),
-    inject: ['DATA_SOURCE'],
-  },
-];
-
 @Injectable()
 export class UrlProvider implements UrlRepository {
   private repository: Repository<Url>;

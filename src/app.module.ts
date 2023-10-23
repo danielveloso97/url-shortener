@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DataBaseModule } from './database/database.module';
-import { UrlProvider, UrlProviders } from './database/url.providers';
+import { UrlProvider } from './database/url.providers';
 import { ListUrl } from './use-cases/list-url';
 import { AppController } from './app.controller';
 import { GetUrl } from './use-cases/get-url';
@@ -11,7 +11,6 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [ConfigModule.forRoot(), DataBaseModule],
   providers: [
-    ...UrlProviders,
     ListUrl,
     GetUrl,
     RegisterShortUrl,
